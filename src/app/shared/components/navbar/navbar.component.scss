@@ -1,0 +1,15 @@
+.navbar {
+  border-bottom: 3px solid #e7e7e7;
+}
+
+.navbar-light .navbar-brand {
+  color: #00b5f2;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+  color: #009bd0;
+}
+
+a {
+  cursor: pointer;
+}

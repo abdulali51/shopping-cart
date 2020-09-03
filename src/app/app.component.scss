@@ -1,0 +1,10 @@
+::ng-deep app-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .container.main {
+    flex-grow: 1;
+    margin-top: 2rem;
+  }
+}
