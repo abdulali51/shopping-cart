@@ -1,21 +1,24 @@
 <div class="sticky-top">
-  <div class="list-group">
-    <a class="list-group-item list-group-item-action active"
-       routerLink="/">All Categories</a>
-    <a class="list-group-item list-group-item-action">
-      Bread
-    </a>
-    <a class="list-group-item list-group-item-action">
-      Dairy
-    </a>
-    <a class="list-group-item list-group-item-action">
-      Fruits
-    </a>
-    <a class="list-group-item list-group-item-action">
-      Seasonings and Spices
-    </a>
-    <a class="list-group-item list-group-item-action">
-      Vegetables
-    </a>
-  </div>
+  <ng-container *ngIf="categories; else allCategory">
+    <div class="list-group">
+      <a class="list-group-item list-group-item-action"
+        [ngClass]="{'active': !category}"
+        (click)="selectCategory()">
+        All Categories
+      </a>
+      <a *ngFor="let c of categories"
+        class="list-group-item list-group-item-action"
+        [ngClass]="{'active': c.id === category?.id}"
+        (click)="selectCategory(c)">
+        {{ c.type }}
+      </a>
+    </div>
+  </ng-container>
+  <ng-template #allCategory>
+    <div class="list-group">
+      <a class="list-group-item list-group-item-action active">
+        All Categories
+      </a>
+    </div>
+  </ng-template>
 </div>

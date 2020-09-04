@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemsService, Item } from 'src/app/shared';
+import { ItemsService, Item, ItemCategory } from 'src/app/shared';
 
 @Component({
   selector: 'app-item-list',
@@ -8,7 +8,9 @@ import { ItemsService, Item } from 'src/app/shared';
 })
 export class ItemListComponent implements OnInit {
 
-  items: Item[];
+  items: Item[] = [];
+  filteredItems: Item[] = [];
+  filterCategory: ItemCategory;
 
   constructor(private itemsService: ItemsService) { }
 
@@ -20,6 +22,7 @@ export class ItemListComponent implements OnInit {
     this.itemsService.getAllItems().subscribe(
       (data) => {
         this.items = data;
+        this.filterItems();
       },
       (err) => {
         console.log(err);
@@ -27,4 +30,15 @@ export class ItemListComponent implements OnInit {
     );
   }
 
+  filterItems(category?: ItemCategory) {
+    this.filterCategory = category;
+    if (!this.filterCategory) {
+      this.filteredItems = this.items;
+    } else {
+      this.filteredItems = this.items.filter((item) => {
+        return item.category.id === this.filterCategory.id;
+      });
+    }
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
 }
