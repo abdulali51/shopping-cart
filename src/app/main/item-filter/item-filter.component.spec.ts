@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ItemFilterComponent } from './item-filter.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ItemFilterComponent', () => {
   let component: ItemFilterComponent;
@@ -8,7 +9,8 @@ describe('ItemFilterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemFilterComponent ]
+      declarations: [ ItemFilterComponent ],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
   }));

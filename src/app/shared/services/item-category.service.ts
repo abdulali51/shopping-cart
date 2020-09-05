@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class ItemCategoryService {
 
-  private readonly url = 'http://www.json-generator.com/api/json/get/cpeIjFqwde';
+  private readonly url = 'https://www.json-generator.com/api/json/get/cpeIjFqwde';
 
   constructor(private http: HttpClient) { }
 

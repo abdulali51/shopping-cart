@@ -9,7 +9,7 @@ import { Item } from '../models/item';
 })
 export class ItemsService {
 
-  private readonly url = 'http://www.json-generator.com/api/json/get/bTYHqSgTTm';
+  private readonly url = 'https://www.json-generator.com/api/json/get/bTYHqSgTTm';
 
   constructor(private http: HttpClient) { }
 
