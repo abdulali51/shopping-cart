@@ -9,13 +9,29 @@ import { CartService } from '../../services/cart.service';
 })
 export class ItemCardComponent implements OnInit {
   @Input() item: Item;
+  isItemInCart: boolean;
 
   constructor(private cartService: CartService) {}
 
-  ngOnInit(): void {}
-
-  addToCart(item: Item) {
-    this.cartService.addItemToCart(item);
+  ngOnInit(): void {
+    this.checkItemInCart();
   }
 
+  addToCart(item: Item) {
+    this.cartService.addItem(item);
+    this.checkItemInCart();
+  }
+
+  removeFromCart(item: Item) {
+    this.cartService.removeItem(item);
+    this.checkItemInCart();
+  }
+
+  checkItemInCart() {
+    this.isItemInCart = this.cartService.checkItemInCart(this.item.id);
+  }
+
+  getItemQuantity(item: Item) {
+    return this.cartService.getItemQuantity(this.item.id);
+  }
 }

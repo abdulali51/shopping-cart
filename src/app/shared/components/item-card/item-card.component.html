@@ -12,22 +12,29 @@
   </div>
 
   <div class="card-footer">
-    <button class="btn btn-secondary btn-block" (click)="addToCart(item)">
-      Add to Cart
-    </button>
-    <div class="row no-gutters">
-      <div class="col-2">
-        <button class="btn btn-secondary btn-block">
-          <i class="fa fa-minus" aria-hidden="true"></i>
-        </button>
+    <ng-container *ngIf="!isItemInCart; else customize">
+      <button class="btn btn-secondary btn-block"
+              (click)="addToCart(item)">
+        Add to Cart
+      </button>
+    </ng-container>
+    <ng-template #customize>
+      <div class="row no-gutters">
+        <div class="col-2">
+          <button class="btn btn-secondary btn-block" (click)="removeFromCart(item)">
+            <i class="fa fa-minus"
+               aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="col text-center quantity">{{ getItemQuantity(item) }} in cart</div>
+        <div class="col-2">
+          <button class="btn btn-secondary btn-block" (click)="addToCart(item)">
+            <i class="fa fa-plus"
+               aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
-      <div class="col text-center quantity">1 in cart</div>
-      <div class="col-2">
-        <button class="btn btn-secondary btn-block">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-        </button>
-      </div>
-    </div>
+    </ng-template>
   </div>
-  
+
 </div>

@@ -6,4 +6,5 @@ export * from './services/items.service';
 export * from './services/item-category.service';
 export * from './models/item';
 export * from './models/category';
+export * from './models/cart-item';
 
