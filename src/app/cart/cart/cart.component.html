@@ -1,1 +1,70 @@
-<p>cart works!</p>
+<div class="row">
+  <div class="col">
+
+    <div class="clearfix">
+      <h2 class="pull-left">Shopping cart summary</h2>
+      <a class="btn btn-light pull-right"
+         *ngIf="(cart$ | async).length > 0"
+         (click)="emptyCart()">Empty Cart</a>
+    </div>
+
+    <div class="card">
+      <ng-container *ngIf="(cart$ | async).length > 0; else empty">
+        <table class="table table-hover">
+          <thead>
+            <tr class="bg">
+              <th></th>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th class="text-right">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cart$ | async">
+              <td>
+                <img [src]="item.imageUrl"
+                     alt="Item image"
+                     width="100px"
+                     height="100px">
+              </td>
+              <td>{{ item.name }}</td>
+              <td>
+                <div class="row no-gutters">
+                  <div class="col-2">
+                    <button class="btn btn-link"
+                            (click)="removeItem(item)">
+                      <i class="fa fa-minus"
+                         aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  <div class="col-1 text-center quantity">{{ item.quantity }}</div>
+                  <div class="col-2">
+                    <button class="btn btn-link"
+                            (click)="addItem(item)">
+                      <i class="fa fa-plus"
+                         aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+              </td>
+              <td>{{ item.price | currency: "USD" }}</td>
+              <td class="text-right">{{ item.quantity * item.price | currency: "USD" }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="5"
+                  class="text-right">SubTotal : {{ getTotalPrice() | currency: "USD" }}</th>
+            </tr>
+          </tfoot>
+        </table>
+      </ng-container>
+      <ng-template #empty>
+        <div class="card-body">
+          <p>Your cart is empty. Go to <a routerLink="/">Products page</a> to add items.</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

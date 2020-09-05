@@ -1,0 +1,26 @@
+.clearfix {
+  margin-bottom: 1rem;
+}
+
+.bg {
+  background-color: #00b5f2;
+  color: #ffffff;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.quantity {
+  line-height: 2rem;
+}
+
+.btn-link {
+  color: #6c757d;
+  &:hover {
+    color: #5a6268;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
